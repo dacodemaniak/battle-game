@@ -1,26 +1,17 @@
 package org.aelion.models;
 
-public class Card {
+import org.aelion.utils.Family;
+
+public abstract class Card {
     /**
      * Color of a card
      */
     private String color;
+
     /**
      * Card family
      */
-    private String family;
-    /**
-     * Card itself
-     */
-    private String card;
-
-    public Card() {}
-
-    public Card(String color, String family, String card) {
-        this.color = color;
-        this.family = family;
-        this.card = card;
-    }
+    protected Family family;
 
     public String getColor() {
         return color;
@@ -30,23 +21,32 @@ public class Card {
         this.color = color;
     }
 
-    public String getFamily() {
+    public Family getFamily() {
         return family;
     }
 
-    public void setFamily(String family) {
+    public void setFamily(Family family) {
         this.family = family;
     }
 
-    public String getCard() {
-        return card;
-    }
-
-    public void setCard(String card) {
-        this.card = card;
-    }
-
     public String toString() {
-        return this.card + " of " + this.family;
+        String output = "";
+        switch (this.family) {
+            case HEARTS:
+                output = "Coeurs";
+                break;
+            case SPADES:
+                output = "Piques";
+                break;
+            case DIAMONDS:
+                output = "Carreaux";
+                break;
+            case CLUBS:
+                output = "Trèfles";
+                break;
+            default:
+                break;
+        }
+        return output;
     }
 }

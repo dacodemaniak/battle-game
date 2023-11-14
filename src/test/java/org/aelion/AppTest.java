@@ -15,11 +15,4 @@ public class AppTest
         app.run();
         assertEquals(app.aceOfHeart.getCard(), "Ace");
     }
-
-    @Test
-    public void testPlayingCardIsAnAce() {
-        App app = new App();
-        app.run();
-        assertEquals(app.playingCard.card(), "Ace");
-    }
 }

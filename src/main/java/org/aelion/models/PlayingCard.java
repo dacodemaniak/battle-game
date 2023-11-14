@@ -1,24 +1,13 @@
 package org.aelion.models;
 
-public class PlayingCard {
+public class PlayingCard extends Card {
     private String card;
-    private String family;
 
-    public PlayingCard card(String card) {
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
         this.card = card;
-        return this; // Use to chain methods
-    }
-
-    public String card() {
-        return this.card;
-    }
-
-    public PlayingCard family(String family) {
-        this.family = family;
-        return this;
-    }
-
-    public String family() {
-        return this.family;
     }
 }

@@ -2,6 +2,7 @@ package org.aelion;
 
 import org.aelion.models.Card;
 import org.aelion.models.PlayingCard;
+import org.aelion.utils.Family;
 
 /**
  * Hello world!
@@ -11,7 +12,7 @@ public class App  {
     /**
      * Ace of heart
      */
-    public Card aceOfHeart;
+    public PlayingCard aceOfHeart;
 
     public PlayingCard playingCard;
 
@@ -21,13 +22,9 @@ public class App  {
     }
 
     public void run() {
-        this.aceOfHeart = new Card("Red", "Heart", "Ace");
-        System.out.println(this.aceOfHeart);
-
-        this.playingCard = new PlayingCard();
-        this.playingCard
-            .card("Ace")
-            .family("Spade");
-
+        this.aceOfHeart = new PlayingCard();
+        this.aceOfHeart.setColor("Red");
+        this.aceOfHeart.setFamily(Family.HEARTS);
+        this.aceOfHeart.setCard("Ace");
     }
 }
