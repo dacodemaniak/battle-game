@@ -8,6 +8,8 @@ import java.util.Set;
 import org.aelion.models.Card;
 import org.aelion.models.Player;
 import org.aelion.models.PlayingCard;
+import org.aelion.services.CardGame;
+import org.aelion.services.impl.BattleImpl;
 import org.aelion.utils.Data;
 import org.aelion.utils.Family;
 
@@ -27,10 +29,17 @@ public class App  {
     public void run() {
         this.player1 = new Player();
         this.player1.setName("Player 1");
-        this.player1.setCards((ArrayList<PlayingCard>) Data.distribute());
+        
 
         this.player2 = new Player();
         this.player2.setName(("Player 2"));
-        this.player2.setCards((ArrayList<PlayingCard>) Data.distribute());
+
+        // Create a new BattleGame
+        CardGame battle = new BattleImpl();
+        battle.addPlayer(player1);
+        battle.addPlayer(player2);
+
+        // Card distribution
+        battle.distribute();
     }
 }
