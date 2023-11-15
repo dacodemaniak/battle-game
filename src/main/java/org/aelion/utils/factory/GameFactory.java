@@ -33,7 +33,8 @@ public class GameFactory {
         StringBuilder sbClassName = new StringBuilder();
         sbClassName
             .append(packageRoot)
-            .append(this.game);
+            .append(this.game)
+            .append("Impl");
         String className = sbClassName.toString();
 
         Class<CardGame> game = (Class<CardGame>) Class.forName(className);
