@@ -13,6 +13,7 @@ import org.aelion.services.CardGame;
 import org.aelion.services.impl.BattleImpl;
 import org.aelion.utils.Data;
 import org.aelion.utils.Family;
+import org.aelion.utils.factory.GameFactory;
 
 /**
  * Hello world!
@@ -31,38 +32,21 @@ public class App {
 
     public void run() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, NoSuchMethodException, SecurityException {
-        // Fake User response
-        String game = "Battle";
-
-        // Build the string that reflect impl we need
-        StringBuilder sbClassName = new StringBuilder();
-        sbClassName
-                .append("org.")
-                .append("aelion.")
-                .append("services.")
-                .append("impl.")
-                .append(game)
-                .append("Impl");
-
-        String className = sbClassName.toString();
-        try {
-            Class<CardGame> gameClass = (Class<CardGame>) Class.forName(className);
-            CardGame cardGame = gameClass.getDeclaredConstructor(null).newInstance(null);
-
+            
             this.player1 = new Player();
             this.player1.setName("Player 1");
 
             this.player2 = new Player();
             this.player2.setName(("Player 2"));
 
-            cardGame.addPlayer(player1);
-            cardGame.addPlayer(player2);
-            // Card distribution
-            cardGame.distribute();
-            
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+            try {
+                CardGame cardGame = GameFactory.getInstance("Battle");
+                cardGame.addPlayer(player1);
+                cardGame.addPlayer(player2);
+
+                cardGame.distribute();
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
     }
 }
