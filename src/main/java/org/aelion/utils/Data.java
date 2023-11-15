@@ -62,13 +62,18 @@ public class Data {
     }
 
     public static List<PlayingCard> distribute() {
+        // Get the full desk (52 cards)
         List<PlayingCard> desk = Data.createDeck();
+
+        // Prepare a desk (empty ArrayList)
         List<PlayingCard> playerDesk = new ArrayList<>();
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 26; i++) {
+            // Use Random class to pick random integer
             Random random = new Random();
             int indice = random.nextInt(Data.upperBound);
 
+            // Add card into player desk
             playerDesk.add(desk.get(indice));
 
             // Unstack item from desk
