@@ -1,5 +1,6 @@
 package org.aelion;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,29 +18,51 @@ import org.aelion.utils.Family;
  * Hello world!
  *
  */
-public class App  {
+public class App {
 
     public Player player1;
     public Player player2;
-    public static void main( String[] args ) {
+
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException,
+            IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         App app = new App();
         app.run();
     }
 
-    public void run() {
-        this.player1 = new Player();
-        this.player1.setName("Player 1");
-        
+    public void run() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
+            InvocationTargetException, NoSuchMethodException, SecurityException {
+        // Fake User response
+        String game = "Battle";
 
-        this.player2 = new Player();
-        this.player2.setName(("Player 2"));
+        // Build the string that reflect impl we need
+        StringBuilder sbClassName = new StringBuilder();
+        sbClassName
+                .append("org.")
+                .append("aelion.")
+                .append("services.")
+                .append("impl.")
+                .append(game)
+                .append("Impl");
 
-        // Create a new BattleGame
-        CardGame battle = new BattleImpl();
-        battle.addPlayer(player1);
-        battle.addPlayer(player2);
+        String className = sbClassName.toString();
+        try {
+            Class<CardGame> gameClass = (Class<CardGame>) Class.forName(className);
+            CardGame cardGame = gameClass.getDeclaredConstructor(null).newInstance(null);
 
-        // Card distribution
-        battle.distribute();
+            this.player1 = new Player();
+            this.player1.setName("Player 1");
+
+            this.player2 = new Player();
+            this.player2.setName(("Player 2"));
+
+            cardGame.addPlayer(player1);
+            cardGame.addPlayer(player2);
+            // Card distribution
+            cardGame.distribute();
+            
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

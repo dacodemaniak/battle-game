@@ -2,6 +2,8 @@ package org.aelion;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.junit.Test;
 
 /**
@@ -10,7 +12,7 @@ import org.junit.Test;
 public class AppTest
 {
     @Test
-    public void playerHasHisOwnDesk() {
+    public void playerHasHisOwnDesk() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
         App app = new App();
         app.run();
 
