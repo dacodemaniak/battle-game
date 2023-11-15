@@ -19,7 +19,7 @@ public class Data {
 
     private static Builder<PlayingCard> builder = new BuilderImpl();
 
-    private static Integer upperBound = 51;
+    private static Integer upperBound = 52;
 
     public static List<PlayingCard> createDeck() {
         ArrayList<PlayingCard> cards = new ArrayList<>();
