@@ -1,6 +1,6 @@
 package org.aelion.models;
 
-public class PlayingCard extends Card {
+public final class PlayingCard extends Card {
     private String card;
 
     public String getCard() {
